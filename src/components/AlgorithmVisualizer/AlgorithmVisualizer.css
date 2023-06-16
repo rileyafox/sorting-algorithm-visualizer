@@ -1,29 +1,31 @@
 .visualizer {
-    display: flex;
-    align-items: flex-end;
-    height: 500px;
-  }
-  
-  .bar {
-    width: 2px;
-    background-color: blue;
-  }
-  
-  .highlight {
-    background-color: red;
-  }
-  
-  .algorithm-step ul {
-    display: flex;
-    align-items: flex-end;
-    height: 200px;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .algorithm-step li {
-    list-style: none;
-    width: 50px;
-    margin: 0 2px;
-  }
-  
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 500px;
+  flex-wrap: wrap;
+}
+
+.bar {
+  width: 2px;
+  background-color: blue;
+  margin: 1px;
+}
+
+.highlight {
+  background-color: red;
+}
+
+.algorithm-step ul {
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  padding: 0;
+  margin: 0;
+}
+
+.algorithm-step li {
+  list-style: none;
+  width: 50px;
+  margin: 0 2px;
+}

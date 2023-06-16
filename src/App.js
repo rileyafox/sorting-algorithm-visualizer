@@ -9,8 +9,13 @@ const App = () => {
   const [numbers, setNumbers] = useState([]);
   const [steps, setSteps] = useState([]);
   const [algorithm, setAlgorithm] = useState('Bubble Sort');
-  
+  const [currentStep, setCurrentStep] = useState(null);
+  const [start, setStart] = useState(false);
+
   useEffect(() => {
+    if (!start) {
+      return;
+    }
     switch(algorithm) {
       case 'Bubble Sort':
         setSteps(bubbleSortSteps(numbers));
@@ -19,13 +24,17 @@ const App = () => {
       default:
         break;
     }
-  }, [algorithm, numbers]);
-  console.log(steps); // add this line
+  }, [algorithm, numbers, start]);
+
+  const startSorting = () => {
+    setStart(true);
+  }
+
   return (
-    <div className="App">
-      <NumberList onListChange={setNumbers} />
+    <div className="app-container">
+      <AlgorithmVisualizer steps={steps} numbers={numbers} onStepChange={setCurrentStep} />
+      <NumberList onListChange={setNumbers} onStart={startSorting} /> {/* onStart prop */}
       <AlgorithmSelector onAlgorithmChange={setAlgorithm} />
-      <AlgorithmVisualizer steps={steps} />
     </div>
   );
 }

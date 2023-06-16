@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
+import './NumberList.css';
 
-const NumberList = ({ onListChange }) => {
-  const [input, setInput] = useState('');
+const NumberList = ({ onListChange, onStart }) => {
+  const [input, setInput] = useState("");
 
-  const handleInputChange = (event) => {
-    setInput(event.target.value);
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
   };
 
   const handleAddNumber = () => {
-    const number = parseInt(input, 10);
-    if (!isNaN(number)) {
-      onListChange(prevNumbers => [...prevNumbers, number]);
-      setInput('');
-    }
+    onListChange((prevList) => [...prevList, Number(input)]);
+    setInput("");
+  };
+
+  const startSorting = () => {
+    onStart();
   };
 
   return (
-    <div>
-      <input value={input} onChange={handleInputChange} type="number" />
+    <div className="number-input-container">
+      <input className="number-input" type="number" value={input} onChange={handleInputChange} />
       <button onClick={handleAddNumber}>Add number</button>
+      <button onClick={startSorting}>Start</button>
     </div>
   );
 };

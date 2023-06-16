@@ -1,41 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import './AlgorithmVisualizer.css';
 
-const AlgorithmVisualizer = ({ steps = [] }) => { 
+const AlgorithmVisualizer = ({ steps = [], numbers = [], onStepChange }) => { 
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    setCurrentStep(0);
-  }, [steps]);
-
-  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentStep(step => step < steps.length ? step + 1 : step);
+      setCurrentStep(prevStep => {
+        const newStep = prevStep < steps.length ? prevStep + 1 : prevStep;
+        if (newStep !== prevStep && onStepChange) {
+          onStepChange(newStep);
+        }
+        return newStep;
+      });
     }, 500);
 
     return () => clearInterval(timer);
-  }, [steps]);
+  }, [steps, onStepChange]);
 
   if (!Array.isArray(steps)) { 
     return <div>Error: steps is not an array</div>; 
   }
 
-  // if there are no steps or the current step is not yet set, display nothing
-  if (steps.length === 0 || currentStep === 0) {
-    return null;
-  }
+  let arrayToDisplay = numbers;
+  let comparedIndices = [];
 
-  // get the current step
-  const step = steps[currentStep - 1];
+  if (currentStep > 0 && currentStep <= steps.length) {
+    const step = steps[currentStep - 1];
+    arrayToDisplay = step.array;
+    comparedIndices = step.compared;
+  }
 
   return (
     <div className="algorithm-visualizer">
       <div className="algorithm-step">
         <ul>
-          {step.array.map((number, index) => {
+          {arrayToDisplay.map((number, index) => {
             let color = 'blue';
-            if (step.compared.includes(index)) {
-              color = step.array[step.compared[0]] > step.array[step.compared[1]] ? 'red' : 'green';
+            if (comparedIndices.includes(index)) {
+              color = arrayToDisplay[comparedIndices[0]] > arrayToDisplay[comparedIndices[1]] ? 'red' : 'green';
             }
             return (
               <li key={index} style={{ backgroundColor: color, color: 'white', height: `${number}px` }}>
