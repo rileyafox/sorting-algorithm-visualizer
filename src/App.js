@@ -4,6 +4,7 @@ import NumberList from './components/NumberList/NumberList';
 import AlgorithmSelector from './components/AlgorithmSelector/AlgorithmSelector';
 import AlgorithmVisualizer from './components/AlgorithmVisualizer/AlgorithmVisualizer';
 import { bubbleSortSteps } from './components/SortingAlgorithms/BubbleSort';
+import { quickSortSteps } from './components/SortingAlgorithms/QuickSort'; // importing QuickSort
 
 const App = () => {
   const [numbers, setNumbers] = useState([]);
@@ -19,6 +20,9 @@ const App = () => {
     switch(algorithm) {
       case 'Bubble Sort':
         setSteps(bubbleSortSteps(numbers));
+        break;
+      case 'Quick Sort':
+        setSteps(quickSortSteps(numbers)); // added QuickSort case
         break;
       // add more cases when you add more sorting algorithms
       default:

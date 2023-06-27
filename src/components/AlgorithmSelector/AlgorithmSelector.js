@@ -9,7 +9,7 @@ const AlgorithmSelector = ({ onAlgorithmChange }) => {
     <div>
       <select onChange={handleChange}>
         <option value="Bubble Sort">Bubble Sort</option>
-        {/* Add more options as you implement more algorithms */}
+        <option value="Quick Sort">Quick Sort</option> {/* New Line Added */}
       </select>
     </div>
   );
