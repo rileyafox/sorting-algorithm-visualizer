@@ -13,7 +13,7 @@ const AlgorithmVisualizer = ({ steps = [], numbers = [], onStepChange }) => {
         }
         return newStep;
       });
-    }, 500);
+    }, 150);
 
     return () => clearInterval(timer);
   }, [steps, onStepChange]);

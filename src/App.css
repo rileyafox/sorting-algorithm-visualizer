@@ -50,3 +50,9 @@ button {
 button:hover {
   background: linear-gradient(to right, #5B86E5, #36D1DC);
 }
+
+.sort-time {
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 20px;
+}

@@ -6,6 +6,7 @@ const NumberList = ({ onListChange, onStart }) => {
   const [input, setInput] = useState("");
   const [listSize, setListSize] = useState(0);
 
+
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
@@ -31,7 +32,7 @@ const NumberList = ({ onListChange, onStart }) => {
         <button className="button" onClick={handleAddNumber}>Add number</button>
       </div>
       <div className="input-container">
-        <input className="random-list-size" type="number" value={listSize} onChange={(e) => setListSize(Number(e.target.value))} />
+        <input className="random-list-size" type="number" placeholder="Enter list size" value={listSize} onChange={(e) => setListSize(Number(e.target.value))} />
         <button className="button" onClick={handleGenerateRandomList}>Generate Random List</button>
       </div>
       <button className="button" onClick={startSorting}>Start</button>
