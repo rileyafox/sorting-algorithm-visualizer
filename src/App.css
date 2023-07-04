@@ -56,3 +56,9 @@ button:hover {
   color: #333;
   margin-top: 20px;
 }
+
+.sort-times {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
